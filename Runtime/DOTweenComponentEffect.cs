@@ -73,7 +73,7 @@ namespace Umph.DOTween
 
         public override IEffect ConstructEffect()
         {
-            return new DOTweenEffect(ConstructTween());
+            return new DOTweenEffect(Duration, ConstructTween);
         }
 
         protected abstract Tween GetBaseTween();
