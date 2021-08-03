@@ -1,11 +1,11 @@
 {
   "name": "com.umph.dotween",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "unity": "2020.3",
   "displayName":  "Umph DOTween",
   "description": "Extension components integrating DOTween tweens for Umph.",
   "dependencies": 
   {
-  	"com.umph.core": "1.0.1"
+  	"com.umph.core": "1.0.2"
   }
 }
