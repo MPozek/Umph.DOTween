@@ -22,24 +22,24 @@ namespace Umph.DOTween
         
         public bool RequiresUpdates => false;
 
-        public bool IsCompleted => _tween != null && _tween.IsComplete();
+        public bool IsCompleted => _tween != null && (!_tween.active || _tween.IsComplete());
 
         public void Play()
         {
-            if (_tween != null)
+            if (_tween != null && _tween.active)
             {
                 _tween.Kill();
             }
 
             _tween = _tweenConstructor.Invoke();
-            _tween.SetAutoKill(false);
+            _tween.SetRecyclable(true);
 
             _tween.Play();
         }
 
         public void Reset()
         {
-            if (_tween != null)
+            if (_tween != null && _tween.active)
             {
                 if (_tween.IsPlaying())
                 {
@@ -52,7 +52,7 @@ namespace Umph.DOTween
 
         public void Skip()
         {
-            if (_tween == null)
+            if (_tween == null || !_tween.active)
             {
                 Play();
             }
