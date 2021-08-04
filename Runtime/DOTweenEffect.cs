@@ -23,6 +23,7 @@ namespace Umph.DOTween
         public bool RequiresUpdates => false;
 
         public bool IsCompleted => _tween != null && (!_tween.active || _tween.IsComplete());
+        public bool IsPlaying => _tween != null && _tween.IsPlaying();
 
         public void Play()
         {
