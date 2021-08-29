@@ -11,7 +11,14 @@ namespace Umph.DOTween.Renderer
 
         protected override Tween GetBaseTween()
         {
-            return Target.material.DOFloat(EndValue, PropertyName, Duration);
+            if (UseSharedMaterial)
+            {
+                return Target.sharedMaterial.DOFloat(EndValue, PropertyName, Duration);
+            }
+            else
+            {
+                return Target.material.DOFloat(EndValue, PropertyName, Duration);
+            }
         }
     }
 }
