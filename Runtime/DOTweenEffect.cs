@@ -18,6 +18,12 @@ namespace Umph.DOTween
             _tweenConstructor = tweenConstructor;
         }
 
+        ~DOTweenEffect()
+        {
+            if (_tween != null)
+                _tween.Kill();
+        }
+
         public float Duration { get; private set; }
         
         public bool RequiresUpdates => false;
@@ -27,25 +33,35 @@ namespace Umph.DOTween
 
         public void Play()
         {
-            if (_tween != null && _tween.active)
+            if (_tween == null || !_tween.active || _tween.IsComplete())
             {
-                _tween.Kill();
-            }
+                if (_tween != null)
+                {
+                    _tween.Kill();
+                    _tween = null;
+                }
 
-            _tween = _tweenConstructor.Invoke();
-            _tween.SetRecyclable(true);
+                _tween = _tweenConstructor.Invoke();
+                _tween.SetRecyclable(true);
+                _tween.SetAutoKill(false);
+            }
 
             _tween.Play();
         }
 
+        public void Pause()
+        {
+            if (IsPlaying)
+            {
+                _tween.Pause();
+            }
+        }
+
         public void Reset()
         {
-            if (_tween != null && _tween.active)
+            if (_tween != null)
             {
-                if (_tween.IsPlaying())
-                {
-                    _tween.Rewind();
-                }
+                _tween.Rewind();
                 _tween.Kill();
                 _tween = null;
             }
