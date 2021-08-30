@@ -3,6 +3,7 @@ using Umph.Core;
 
 namespace Umph.DOTween.Renderer
 {
+
     [UmphComponentMenu("Material Float", "DO Tween/Renderer/Material Float")]
     public class MaterialFloatComponentEffect : DOTweenComponentEffect<UnityEngine.Renderer, float>
     {
