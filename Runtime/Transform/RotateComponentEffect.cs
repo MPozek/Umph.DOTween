@@ -7,7 +7,7 @@ namespace Umph.DOTween.Transform
     [UmphComponentMenu("Rotate", "DO Tween/Transform/Rotate")]
     public class RotateComponentEffect : DOTweenComponentEffect<UnityEngine.Transform, Vector3>
     {
-        protected override Tween GetBaseTween()
+        protected override Tweener GetBaseTween()
         {
             return Target.DORotate(EndValue, Duration);
         }

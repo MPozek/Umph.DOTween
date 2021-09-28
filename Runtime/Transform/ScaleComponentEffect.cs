@@ -8,7 +8,7 @@ namespace Umph.DOTween.Transform
     [UmphComponentMenu("Scale", "DO Tween/Transform/Scale")]
     public class ScaleComponentEffect : DOTweenComponentEffect<UnityEngine.Transform, Vector3>
     {
-        protected override Tween GetBaseTween()
+        protected override Tweener GetBaseTween()
         {
             return Target.DOScale(EndValue, Duration);
         }

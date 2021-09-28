@@ -10,7 +10,7 @@ namespace Umph.DOTween.Renderer
         public bool UseSharedMaterial;
         public string PropertyName;
 
-        protected override Tween GetBaseTween()
+        protected override Tweener GetBaseTween()
         {
             if (UseSharedMaterial)
             {

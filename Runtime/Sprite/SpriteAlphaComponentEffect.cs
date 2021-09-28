@@ -7,7 +7,7 @@ namespace Umph.DOTween.Sprite
     [UmphComponentMenu("Sprite Alpha", "DO Tween/Sprite/Sprite Alpha")]
     public class SpriteAlphaComponentEffect : DOTweenComponentEffect<SpriteRenderer, float>
     {
-        protected override Tween GetBaseTween()
+        protected override Tweener GetBaseTween()
         {
             return Target.DOFade(EndValue, Duration);
         }

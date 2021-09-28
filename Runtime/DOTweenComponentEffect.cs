@@ -62,8 +62,9 @@ namespace Umph.DOTween
         }
 
 #if UNITY_EDITOR
-        public override void EDITOR_Initialize(GameObject ownerObject) 
+        public override void EDITOR_Initialize(GameObject ownerObject, string name) 
         {
+            base.EDITOR_Initialize(ownerObject, name);
             Target = ownerObject.GetComponentInChildren<T_Target>();
         }
 #endif
@@ -75,13 +76,21 @@ namespace Umph.DOTween
         public T_Target Target;
         public float Duration = 1f;
         public bool IsRelative = false;
+        public bool IsFromTween;
         public T_Value EndValue;
 
         public Tween ConstructTween()
         {
             var tween = GetBaseTween();
 
-            tween.SetRelative(IsRelative);
+            if (IsFromTween)
+            {
+                tween.From(false, IsRelative);
+            }
+            else
+            {
+                tween.SetRelative(IsRelative);
+            }
 
             Looping.ApplyTo(tween);
 
@@ -95,6 +104,6 @@ namespace Umph.DOTween
             return new DOTweenEffect(Duration, ConstructTween);
         }
 
-        protected abstract Tween GetBaseTween();
+        protected abstract Tweener GetBaseTween();
     }
 }

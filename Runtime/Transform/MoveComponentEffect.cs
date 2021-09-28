@@ -7,7 +7,7 @@ namespace Umph.DOTween.Transform
     [UmphComponentMenu("Move", "DO Tween/Transform/Move")]
     public class MoveComponentEffect : DOTweenComponentEffect<UnityEngine.Transform, Vector3>
     {
-        protected override Tween GetBaseTween()
+        protected override Tweener GetBaseTween()
         {
             return Target.DOMove(EndValue, Duration);
         }
